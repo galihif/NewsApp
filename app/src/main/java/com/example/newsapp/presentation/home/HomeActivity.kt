@@ -3,6 +3,7 @@ package com.example.newsapp.presentation.home
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import com.example.newsapp.R
@@ -30,12 +31,22 @@ class HomeActivity : AppCompatActivity() {
         viewModel.news.observe(this){
             when(it){
                 is Resource.Success -> {
+                    showLoading(false)
                     adapter.submitList(it.data)
                 }
-                is Resource.Error -> Log.d("GALIH", it.message.toString())
-                is Resource.Loading -> Log.d("GALIH", "loading")
+                is Resource.Error -> {
+                    showLoading(false)
+                    Toast.makeText(this, it.message.toString(), Toast.LENGTH_SHORT).show()
+                }
+                is Resource.Loading -> {
+                    showLoading(true)
+                }
             }
         }
+    }
+    
+    private fun showLoading(isLoading:Boolean) {
+        binding.loading.visibility = if(isLoading) View.VISIBLE else View.GONE
     }
 
     private fun setupAdapter() {
