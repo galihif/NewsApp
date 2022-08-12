@@ -22,13 +22,10 @@ class NewsRepositoryImpl @Inject constructor(
             try {
                 val listNews = remote.getNews().articles.map { it.toNews() }
                 emit(Resource.Success(listNews))
-                Log.d("OKHTTP GALIH", listNews.size.toString())
             }catch (e: HttpException){
                 emit(Resource.Error(e.localizedMessage ?: "Unexpected error occured"))
-                Log.d("OKHTTP GALIH", e.message())
             }catch (e: IOException){
                 emit(Resource.Error(e.localizedMessage ?: "Unexpected error occured"))
-                Log.d("OKHTTP GALIH", e.message.toString())
             }
         }
     }
