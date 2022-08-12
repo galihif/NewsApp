@@ -20,6 +20,7 @@
                 android:id="@+id/iv_image"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
+                android:scaleType="centerCrop"
                 android:adjustViewBounds="true"/>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -30,12 +31,14 @@
                     android:id="@+id/tv_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:maxLines="2"
                     style="@style/TextAppearance.MaterialComponents.Headline5"
                     tools:text="Title Berita"/>
                 <TextView
                     android:id="@+id/tv_desc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:maxLines="3"
                     style="@style/TextAppearance.MaterialComponents.Body1"
                     tools:text="Desc Berita"/>
             </LinearLayout>
